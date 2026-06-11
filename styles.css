@@ -1,0 +1,271 @@
+/* ============================================================
+   Khyathi Kiran Pediredla — Portfolio
+   Custom styles layered on top of Tailwind (CDN).
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for sticky navbar */
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ---------- Background glow blobs ---------- */
+.bg-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.18;
+}
+.bg-glow--one {
+  top: -10%;
+  left: -5%;
+  width: 38rem;
+  height: 38rem;
+  background: radial-gradient(circle, #22d3ee 0%, transparent 70%);
+}
+.bg-glow--two {
+  bottom: -15%;
+  right: -10%;
+  width: 42rem;
+  height: 42rem;
+  background: radial-gradient(circle, #0891b2 0%, transparent 70%);
+}
+
+/* ---------- Gradient text ---------- */
+.gradient-text {
+  background: linear-gradient(90deg, #22d3ee, #67e8f9, #0891b2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ---------- Nav links ---------- */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: #22d3ee;
+  transition: width 0.25s ease;
+}
+.nav-link:hover {
+  color: #fff;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  width: 100%;
+}
+.nav-link.is-active {
+  color: #22d3ee;
+}
+
+#navbar.is-scrolled {
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7);
+}
+
+/* ---------- Section headings ---------- */
+.section-eyebrow {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #22d3ee;
+}
+.section-title {
+  font-family: "Space Grotesk", sans-serif;
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ---------- Stat cards ---------- */
+.stat-card {
+  border: 1px solid rgb(30 41 59 / 0.8);
+  background: rgb(15 23 42 / 0.6);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  text-align: center;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(34 211 238 / 0.6);
+}
+.stat-number {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #22d3ee;
+}
+.stat-label {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* ---------- Skills ---------- */
+.skill-group {
+  border: 1px solid rgb(30 41 59 / 0.8);
+  background: rgb(15 23 42 / 0.5);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.skill-group:hover {
+  border-color: rgb(34 211 238 / 0.5);
+  transform: translateY(-3px);
+}
+.skill-group__title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgb(51 65 85 / 0.9);
+  background: rgb(2 6 23 / 0.6);
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+.chip:hover {
+  border-color: #22d3ee;
+  color: #22d3ee;
+}
+
+/* ---------- Project cards ---------- */
+.project-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(30 41 59 / 0.8);
+  background: rgb(15 23 42 / 0.55);
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgb(34 211 238 / 0.55);
+  box-shadow: 0 20px 40px -25px rgba(34, 211, 238, 0.5);
+}
+.project-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.project-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #22d3ee;
+  background: rgb(34 211 238 / 0.1);
+  border: 1px solid rgb(34 211 238 / 0.25);
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+}
+.project-link {
+  color: #94a3b8;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.project-link:hover {
+  color: #22d3ee;
+  transform: translateY(-2px);
+}
+.project-title {
+  font-family: "Space Grotesk", sans-serif;
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+.project-desc {
+  margin-top: 0.6rem;
+  color: #94a3b8;
+  line-height: 1.7;
+  flex-grow: 1;
+}
+.project-stack {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.project-stack span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  background: rgb(2 6 23 / 0.6);
+  border: 1px solid rgb(51 65 85 / 0.8);
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+}
+
+/* ---------- Form ---------- */
+.form-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+.form-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(51 65 85 / 0.9);
+  background: rgb(15 23 42 / 0.7);
+  padding: 0.75rem 1rem;
+  color: #f1f5f9;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-input::placeholder {
+  color: #64748b;
+}
+.form-input:focus {
+  outline: none;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 3px rgb(34 211 238 / 0.15);
+}
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-ping {
+    animation: none;
+  }
+}

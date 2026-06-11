@@ -1,0 +1,14 @@
+{
+  "name": "khyathi-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio of Khyathi Kiran Pediredla — built for Finlatics ANDP Project-1.",
+  "author": "Khyathi Kiran Pediredla",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
