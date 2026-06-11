@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-accent="cyan">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,8 +9,8 @@
       content="Portfolio of Khyathi Kiran Pediredla — Electrical Engineering student at IIT (BHU) Varanasi who builds AI-powered web applications with TypeScript, React and Node.js."
     />
     <meta name="author" content="Khyathi Kiran Pediredla" />
+    <meta name="theme-color" content="#060a13" />
 
-    <!-- Open Graph -->
     <meta property="og:title" content="Khyathi Kiran Pediredla — Web Developer" />
     <meta
       property="og:description"
@@ -35,13 +35,6 @@
               sans: ["Inter", "system-ui", "sans-serif"],
               display: ["Space Grotesk", "Inter", "sans-serif"],
             },
-            colors: {
-              brand: {
-                400: "#22d3ee",
-                500: "#06b6d4",
-                600: "#0891b2",
-              },
-            },
           },
         },
       };
@@ -49,175 +42,159 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
 
-  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-brand-400/30">
-    <!-- Decorative background glow -->
-    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div class="bg-glow bg-glow--one"></div>
-      <div class="bg-glow bg-glow--two"></div>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+      <div class="preloader__mark">KP</div>
+      <div class="preloader__bar"><span></span></div>
+    </div>
+
+    <!-- Scroll progress -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Custom cursor glow (desktop only) -->
+    <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Animated aurora background -->
+    <div class="aurora" aria-hidden="true">
+      <span class="aurora__blob aurora__blob--1"></span>
+      <span class="aurora__blob aurora__blob--2"></span>
+      <span class="aurora__blob aurora__blob--3"></span>
+      <div class="grid-overlay"></div>
     </div>
 
     <!-- ===================== HEADER / NAV ===================== -->
-    <header
-      id="navbar"
-      class="sticky top-0 z-50 border-b border-slate-800/60 bg-slate-950/70 backdrop-blur-lg transition-shadow"
-    >
-      <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#hero" class="group flex items-center gap-2 font-display text-xl font-bold tracking-tight">
-          <span
-            class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-400 to-cyan-600 font-bold text-slate-950"
-            >KP</span
-          >
-          <span class="text-white">Khyathi<span class="text-brand-400">.</span></span>
+    <header id="navbar" class="navbar">
+      <nav class="navbar__inner">
+        <a href="#hero" class="brand">
+          <span class="brand__mark">KP</span>
+          <span class="brand__name">Khyathi<span class="accent-dot">.</span></span>
         </a>
 
-        <!-- Desktop links -->
-        <ul class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex">
+        <ul class="nav-links">
           <li><a class="nav-link" href="#about">About</a></li>
           <li><a class="nav-link" href="#skills">Skills</a></li>
           <li><a class="nav-link" href="#projects">Projects</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
-          <li>
-            <a
-              href="https://github.com/khyathikiran-p"
-              target="_blank"
-              rel="noopener"
-              class="rounded-lg border border-brand-400/60 px-4 py-2 text-brand-400 transition hover:bg-brand-400 hover:text-slate-950"
-              >GitHub</a
-            >
-          </li>
         </ul>
 
-        <!-- Mobile menu button -->
-        <button
-          id="menu-btn"
-          aria-label="Toggle menu"
-          aria-expanded="false"
-          class="grid h-10 w-10 place-items-center rounded-lg border border-slate-700 text-slate-200 md:hidden"
-        >
-          <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+        <div class="nav-actions">
+          <!-- Accent switcher -->
+          <div class="accent-switch" role="group" aria-label="Accent color">
+            <button class="accent-swatch" data-set-accent="cyan" style="--sw:#22d3ee" aria-label="Cyan accent"></button>
+            <button class="accent-swatch" data-set-accent="violet" style="--sw:#a78bfa" aria-label="Violet accent"></button>
+            <button class="accent-swatch" data-set-accent="emerald" style="--sw:#34d399" aria-label="Emerald accent"></button>
+            <button class="accent-swatch" data-set-accent="rose" style="--sw:#fb7185" aria-label="Rose accent"></button>
+          </div>
+
+          <!-- Theme toggle -->
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle light/dark theme">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </button>
+
+          <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="btn-ghost btn-ghost--sm hide-sm">GitHub</a>
+
+          <button id="menu-btn" aria-label="Toggle menu" aria-expanded="false" class="icon-btn menu-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
       </nav>
 
-      <!-- Mobile menu -->
-      <div id="mobile-menu" class="hidden border-t border-slate-800/60 bg-slate-950/95 px-6 py-4 md:hidden">
-        <ul class="flex flex-col gap-4 text-slate-300">
-          <li><a class="block py-1" href="#about">About</a></li>
-          <li><a class="block py-1" href="#skills">Skills</a></li>
-          <li><a class="block py-1" href="#projects">Projects</a></li>
-          <li><a class="block py-1" href="#contact">Contact</a></li>
-          <li>
-            <a class="block py-1 text-brand-400" href="https://github.com/khyathikiran-p" target="_blank" rel="noopener">GitHub ↗</a>
-          </li>
-        </ul>
+      <div id="mobile-menu" class="mobile-menu">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="accent-text">GitHub ↗</a>
       </div>
     </header>
 
     <main>
       <!-- ===================== HERO ===================== -->
-      <section id="hero" class="relative px-6 pt-20 pb-24 md:pt-28 md:pb-32">
-        <div class="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1.2fr_0.8fr]">
-          <div data-reveal>
-            <span
-              class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/60 px-4 py-1.5 text-sm text-slate-300"
-            >
-              <span class="relative flex h-2 w-2">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
-              </span>
-              Open to internships &amp; collaboration
+      <section id="hero" class="hero">
+        <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <span class="badge" data-reveal>
+              <span class="badge__dot"></span> Open to internships &amp; collaboration
             </span>
 
-            <h1 class="mt-6 font-display text-4xl font-bold leading-tight md:text-6xl">
-              Hi, I'm <span class="gradient-text">Khyathi Kiran</span>
-              <br class="hidden sm:block" />
-              I build things for the web.
+            <h1 class="hero__title" data-reveal>
+              Hi, I'm <span class="gradient-text">Khyathi Kiran</span><br class="hide-sm" />
+              <span class="hero__roles">I build
+                <span id="typed" class="typed"></span><span class="caret">|</span>
+              </span>
             </h1>
 
-            <p class="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+            <p class="hero__lead" data-reveal>
               Electrical Engineering undergrad at
-              <span class="font-semibold text-slate-100">IIT (BHU) Varanasi</span>
-              who turns ideas into working software — from AI-powered web apps to
-              real-time computer-vision tools.
+              <strong>IIT (BHU) Varanasi</strong> who turns ideas into working software —
+              from AI-powered web apps to real-time computer-vision tools.
             </p>
 
-            <div class="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#projects"
-                class="rounded-xl bg-gradient-to-r from-brand-400 to-cyan-600 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-brand-500/20 transition hover:-translate-y-0.5 hover:shadow-brand-500/40"
-                >View My Work</a
-              >
-              <a
-                href="#contact"
-                class="rounded-xl border border-slate-700 px-6 py-3 font-semibold text-slate-100 transition hover:border-brand-400 hover:text-brand-400"
-                >Get in Touch</a
-              >
+            <div class="hero__cta" data-reveal>
+              <a href="#projects" class="btn-primary magnetic">View My Work</a>
+              <a href="#contact" class="btn-ghost magnetic">Get in Touch</a>
             </div>
 
-            <div class="mt-10 flex items-center gap-6 text-slate-400">
-              <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="transition hover:text-brand-400" aria-label="GitHub">
-                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            <div class="hero__socials" data-reveal>
+              <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" aria-label="GitHub" class="social">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
               </a>
-              <a href="mailto:khyathikiran.pediredla@gmail.com" class="transition hover:text-brand-400" aria-label="Email">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+              <a href="mailto:khyathikiran.pediredla@gmail.com" aria-label="Email" class="social">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
               </a>
             </div>
           </div>
 
-          <!-- Avatar -->
-          <div class="flex justify-center md:justify-end" data-reveal>
-            <div class="relative">
-              <div class="absolute -inset-4 rounded-full bg-gradient-to-br from-brand-400/30 to-cyan-600/20 blur-2xl"></div>
-              <img
-                src="assets/avatar.svg"
-                alt="Khyathi Kiran Pediredla"
-                class="relative h-60 w-60 rounded-full border-4 border-slate-800 bg-slate-900 object-cover shadow-2xl md:h-72 md:w-72"
-              />
-              <div
-                class="absolute -bottom-3 -right-2 rounded-2xl border border-slate-700 bg-slate-900/90 px-4 py-2 text-sm font-semibold text-brand-400 shadow-xl backdrop-blur"
-              >
-                IIT (BHU) '28
-              </div>
+          <div class="hero__avatar-wrap" data-reveal>
+            <div class="avatar-float">
+              <div class="avatar-ring"></div>
+              <img src="assets/avatar.svg" alt="Khyathi Kiran Pediredla" class="avatar" />
+              <span class="avatar-badge">IIT (BHU) '28</span>
             </div>
           </div>
         </div>
+
+        <a href="#about" class="scroll-hint" aria-label="Scroll down">
+          <span class="mouse"><span></span></span>
+        </a>
       </section>
 
       <!-- ===================== ABOUT ===================== -->
-      <section id="about" class="border-t border-slate-800/60 bg-slate-900/40 px-6 py-24">
-        <div class="mx-auto max-w-5xl">
-          <p class="section-eyebrow" data-reveal>01 — About</p>
+      <section id="about" class="section section--alt">
+        <div class="container">
+          <p class="eyebrow" data-reveal>01 — About</p>
           <h2 class="section-title" data-reveal>About Me</h2>
 
-          <div class="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr]">
-            <div class="space-y-5 text-lg leading-8 text-slate-300" data-reveal>
+          <div class="about__grid">
+            <div class="about__text" data-reveal>
               <p>
-                I'm <span class="font-semibold text-slate-100">Khyathi Kiran Pediredla</span>, an
-                Electrical Engineering undergraduate at
-                <span class="font-semibold text-brand-400">IIT (BHU) Varanasi</span> (2024–2028). I
-                love learning by building — taking an idea from a rough sketch all the way to a
-                deployed, working product.
+                I'm <strong>Khyathi Kiran Pediredla</strong>, an Electrical Engineering
+                undergraduate at <span class="accent-text">IIT (BHU) Varanasi</span>
+                (2024–2028). I love learning by building — taking an idea from a rough
+                sketch all the way to a deployed, working product.
               </p>
               <p>
-                Most of my recent work sits at the intersection of <span class="text-slate-100">AI and the
-                web</span>: a markerless fitness digital-twin that estimates fatigue in real time, a
-                legal-research co-pilot for Indian advocates, and an AI image-styling app. I care
-                about clean, responsive interfaces and code that's easy to read.
+                Most of my recent work sits at the intersection of <strong>AI and the web</strong>:
+                a markerless fitness digital-twin that estimates fatigue in real time, a
+                legal-research co-pilot for Indian advocates, and an AI image-styling app.
+                I care about clean, responsive interfaces and code that's easy to read.
               </p>
               <p>
-                Comfortable across the stack with TypeScript, React/Next.js and Node.js, I'm always
-                shipping side projects and picking up something new along the way.
+                Comfortable across the stack with TypeScript, React/Next.js and Node.js,
+                I'm always shipping side projects and picking up something new along the way.
               </p>
             </div>
 
-            <div class="grid grid-cols-2 gap-4" data-reveal>
+            <div class="stats" data-reveal>
               <div class="stat-card">
-                <p class="stat-number">6+</p>
+                <p class="stat-number" data-count="6" data-suffix="+">0</p>
                 <p class="stat-label">Projects shipped</p>
               </div>
               <div class="stat-card">
-                <p class="stat-number">2028</p>
+                <p class="stat-number" data-count="2028">0</p>
                 <p class="stat-label">B.Tech, IIT (BHU)</p>
               </div>
               <div class="stat-card">
@@ -233,43 +210,46 @@
         </div>
       </section>
 
+      <!-- Tech marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>TypeScript</span><span>•</span><span>React</span><span>•</span><span>Next.js</span><span>•</span>
+          <span>Node.js</span><span>•</span><span>Tailwind CSS</span><span>•</span><span>JavaScript</span><span>•</span>
+          <span>Python</span><span>•</span><span>Computer Vision</span><span>•</span><span>LLM / RAG</span><span>•</span>
+          <span>Git</span><span>•</span><span>Vercel</span><span>•</span>
+          <span>TypeScript</span><span>•</span><span>React</span><span>•</span><span>Next.js</span><span>•</span>
+          <span>Node.js</span><span>•</span><span>Tailwind CSS</span><span>•</span><span>JavaScript</span><span>•</span>
+          <span>Python</span><span>•</span><span>Computer Vision</span><span>•</span><span>LLM / RAG</span><span>•</span>
+          <span>Git</span><span>•</span><span>Vercel</span><span>•</span>
+        </div>
+      </div>
+
       <!-- ===================== SKILLS ===================== -->
-      <section id="skills" class="px-6 py-24">
-        <div class="mx-auto max-w-6xl">
-          <p class="section-eyebrow" data-reveal>02 — Skills</p>
+      <section id="skills" class="section">
+        <div class="container">
+          <p class="eyebrow" data-reveal>02 — Skills</p>
           <h2 class="section-title" data-reveal>Tools &amp; Technologies</h2>
 
-          <div class="mt-12 grid gap-8 md:grid-cols-3">
+          <div class="skills__grid">
             <div class="skill-group" data-reveal>
               <h3 class="skill-group__title">Languages</h3>
-              <div class="mt-4 flex flex-wrap gap-2.5">
-                <span class="chip">HTML5</span>
-                <span class="chip">CSS3</span>
-                <span class="chip">JavaScript</span>
-                <span class="chip">TypeScript</span>
-                <span class="chip">Python</span>
+              <div class="chips">
+                <span class="chip">HTML5</span><span class="chip">CSS3</span>
+                <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Python</span>
               </div>
             </div>
-
             <div class="skill-group" data-reveal>
               <h3 class="skill-group__title">Frameworks &amp; Styling</h3>
-              <div class="mt-4 flex flex-wrap gap-2.5">
-                <span class="chip">React</span>
-                <span class="chip">Next.js</span>
-                <span class="chip">Node.js</span>
-                <span class="chip">Tailwind CSS</span>
-                <span class="chip">REST APIs</span>
+              <div class="chips">
+                <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span>
+                <span class="chip">Tailwind CSS</span><span class="chip">REST APIs</span>
               </div>
             </div>
-
             <div class="skill-group" data-reveal>
               <h3 class="skill-group__title">Tools &amp; Practices</h3>
-              <div class="mt-4 flex flex-wrap gap-2.5">
-                <span class="chip">Git &amp; GitHub</span>
-                <span class="chip">Vercel</span>
-                <span class="chip">AI / LLM Integration</span>
-                <span class="chip">Computer Vision</span>
-                <span class="chip">Responsive Design</span>
+              <div class="chips">
+                <span class="chip">Git &amp; GitHub</span><span class="chip">Vercel</span>
+                <span class="chip">AI / LLM</span><span class="chip">Computer Vision</span><span class="chip">Responsive Design</span>
               </div>
             </div>
           </div>
@@ -277,18 +257,18 @@
       </section>
 
       <!-- ===================== PROJECTS ===================== -->
-      <section id="projects" class="border-t border-slate-800/60 bg-slate-900/40 px-6 py-24">
-        <div class="mx-auto max-w-6xl">
-          <p class="section-eyebrow" data-reveal>03 — Projects</p>
+      <section id="projects" class="section section--alt">
+        <div class="container">
+          <p class="eyebrow" data-reveal>03 — Projects</p>
           <h2 class="section-title" data-reveal>Things I've Built</h2>
 
-          <div class="mt-12 grid gap-7 md:grid-cols-2">
-            <!-- fusfit -->
-            <article class="project-card" data-reveal>
+          <div class="projects__grid">
+            <article class="project-card tilt" data-reveal>
+              <div class="project-card__glow"></div>
               <div class="project-card__top">
                 <span class="project-tag">Health Tech · CV</span>
                 <a href="https://github.com/khyathikiran-p/fusfit" target="_blank" rel="noopener" class="project-link" aria-label="View fusfit on GitHub">
-                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                 </a>
               </div>
               <h3 class="project-title">fusfit</h3>
@@ -297,115 +277,102 @@
                 camera and uses an Extended Kalman Filter to estimate a physiological
                 "state-of-charge" — how much gas you have left in the tank — in real time.
               </p>
-              <div class="project-stack">
-                <span>TypeScript</span><span>React</span><span>Computer Vision</span><span>EKF</span>
-              </div>
+              <div class="project-stack"><span>TypeScript</span><span>React</span><span>Computer Vision</span><span>EKF</span></div>
             </article>
 
-            <!-- lexnyaya -->
-            <article class="project-card" data-reveal>
+            <article class="project-card tilt" data-reveal>
+              <div class="project-card__glow"></div>
               <div class="project-card__top">
                 <span class="project-tag">AI · LegalTech</span>
                 <a href="https://github.com/khyathikiran-p/lexnyaya" target="_blank" rel="noopener" class="project-link" aria-label="View lexnyaya on GitHub">
-                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                 </a>
               </div>
               <h3 class="project-title">LexNyaya</h3>
               <p class="project-desc">
                 An AI co-pilot for Indian advocates. It runs dual-pathway analysis — a "best-case"
-                and a "least-risk" reading — grounded in the new criminal codes (BNS, BNSS, BSA) and
-                the CPC, so lawyers can weigh strategy faster.
+                and a "least-risk" reading — grounded in the new criminal codes (BNS, BNSS, BSA)
+                and the CPC, so lawyers can weigh strategy faster.
               </p>
-              <div class="project-stack">
-                <span>TypeScript</span><span>Next.js</span><span>LLM / RAG</span>
-              </div>
+              <div class="project-stack"><span>TypeScript</span><span>Next.js</span><span>LLM / RAG</span></div>
             </article>
 
-            <!-- losthour1 -->
-            <article class="project-card" data-reveal>
+            <article class="project-card tilt" data-reveal>
+              <div class="project-card__glow"></div>
               <div class="project-card__top">
                 <span class="project-tag">AI · Generative</span>
                 <a href="https://github.com/khyathikiran-p/losthour1" target="_blank" rel="noopener" class="project-link" aria-label="View losthour1 on GitHub">
-                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                 </a>
               </div>
               <h3 class="project-title">LostHour</h3>
               <p class="project-desc">
-                An AI-powered image-styling web app. Upload a photo, pick a style, and an image-generation
-                model returns a polished, artistic version — all from a clean, upload-and-go interface.
+                An AI-powered image-styling web app. Upload a photo, pick a style, and an
+                image-generation model returns a polished, artistic version — all from a clean,
+                upload-and-go interface.
               </p>
-              <div class="project-stack">
-                <span>TypeScript</span><span>AI Image Gen</span><span>Web App</span>
-              </div>
+              <div class="project-stack"><span>TypeScript</span><span>AI Image Gen</span><span>Web App</span></div>
             </article>
 
-            <!-- IIT BHU Club -->
-            <article class="project-card" data-reveal>
+            <article class="project-card tilt" data-reveal>
+              <div class="project-card__glow"></div>
               <div class="project-card__top">
                 <span class="project-tag">Full-Stack · Campus</span>
                 <a href="https://github.com/khyathikiran-p/iitbhu-sustainability-club-api" target="_blank" rel="noopener" class="project-link" aria-label="View the IIT BHU club project on GitHub">
-                  <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
                 </a>
               </div>
               <h3 class="project-title">Sustainability &amp; Innovation Club Platform</h3>
               <p class="project-desc">
-                A web platform and REST API for the Sustainability &amp; Innovation Club at IIT (BHU)
-                Varanasi — handling the club's site and content so the team can manage events and
-                members in one place.
+                A web platform and REST API for the Sustainability &amp; Innovation Club at
+                IIT (BHU) Varanasi — handling the club's site and content so the team can
+                manage events and members in one place.
               </p>
-              <div class="project-stack">
-                <span>JavaScript</span><span>Node.js</span><span>HTML / CSS</span>
-              </div>
+              <div class="project-stack"><span>JavaScript</span><span>Node.js</span><span>HTML / CSS</span></div>
             </article>
           </div>
 
-          <p class="mt-10 text-center text-slate-400" data-reveal>
-            More on my
-            <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="font-semibold text-brand-400 hover:underline">GitHub →</a>
+          <p class="projects__more" data-reveal>
+            More on my <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="accent-text">GitHub →</a>
           </p>
         </div>
       </section>
 
       <!-- ===================== CONTACT ===================== -->
-      <section id="contact" class="px-6 py-24">
-        <div class="mx-auto max-w-3xl text-center">
-          <p class="section-eyebrow" data-reveal>04 — Contact</p>
+      <section id="contact" class="section">
+        <div class="container container--narrow center">
+          <p class="eyebrow" data-reveal>04 — Contact</p>
           <h2 class="section-title" data-reveal>Let's Build Something</h2>
-          <p class="mx-auto mt-4 max-w-xl text-lg text-slate-300" data-reveal>
+          <p class="contact__lead" data-reveal>
             Have an idea, an internship, or just want to say hi? Drop me a message — I'll get back to you.
           </p>
 
-          <form id="contact-form" class="mt-10 space-y-4 text-left" novalidate data-reveal>
-            <div class="grid gap-4 sm:grid-cols-2">
-              <div>
-                <label for="name" class="form-label">Name</label>
-                <input id="name" name="name" type="text" required placeholder="Your name" class="form-input" />
+          <form id="contact-form" class="contact-form" novalidate data-reveal>
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" required placeholder="Your name" />
               </div>
-              <div>
-                <label for="email" class="form-label">Email</label>
-                <input id="email" name="email" type="email" required placeholder="you@example.com" class="form-input" />
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="you@example.com" />
               </div>
             </div>
-            <div>
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" rows="5" required placeholder="What's on your mind?" class="form-input"></textarea>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required placeholder="What's on your mind?"></textarea>
             </div>
-            <button
-              type="submit"
-              class="w-full rounded-xl bg-gradient-to-r from-brand-400 to-cyan-600 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-brand-500/20 transition hover:-translate-y-0.5 hover:shadow-brand-500/40"
-            >
-              Send Message
-            </button>
-            <p id="form-status" class="hidden text-center text-sm" role="status"></p>
+            <button type="submit" class="btn-primary btn-block magnetic">Send Message</button>
+            <p id="form-status" class="form-status" role="status"></p>
           </form>
 
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-slate-300">
-            <a href="mailto:khyathikiran.pediredla@gmail.com" class="inline-flex items-center gap-2 transition hover:text-brand-400">
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
+          <div class="contact__links" data-reveal>
+            <a href="mailto:khyathikiran.pediredla@gmail.com" class="contact__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"/></svg>
               khyathikiran.pediredla@gmail.com
             </a>
-            <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="inline-flex items-center gap-2 transition hover:text-brand-400">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+            <a href="https://github.com/khyathikiran-p" target="_blank" rel="noopener" class="contact__link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
               github.com/khyathikiran-p
             </a>
           </div>
@@ -413,13 +380,17 @@
       </section>
     </main>
 
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="border-t border-slate-800/60 px-6 py-8">
-      <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 text-sm text-slate-400 sm:flex-row">
+    <footer class="footer">
+      <div class="container footer__inner">
         <p>© <span id="year"></span> Khyathi Kiran Pediredla. Built with HTML, Tailwind &amp; JavaScript.</p>
-        <a href="#hero" class="transition hover:text-brand-400">Back to top ↑</a>
+        <a href="#hero" class="accent-text">Back to top ↑</a>
       </div>
     </footer>
+
+    <!-- Back to top -->
+    <button id="to-top" class="to-top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
 
     <script src="script.js"></script>
   </body>
