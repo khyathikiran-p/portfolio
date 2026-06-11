@@ -2,7 +2,7 @@
 
 A personal portfolio website built for the **Finlatics ANDP — Project 1 (Personal Portfolio)**.
 
-🔗 **Live site:** _add your Vercel URL here after deploying_
+🔗 **Live site:** https://portfolio-five-lake-24.vercel.app
 💻 **Repo:** https://github.com/khyathikiran-p/portfolio
 
 ---
