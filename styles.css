@@ -186,9 +186,12 @@ html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
 .btn-block { width: 100%; }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; min-height: 100vh; display: flex; align-items: center; padding: 6rem 0 4rem; }
+/* Layout (min-height/flex/grid/gap) handled by Tailwind utility classes in the markup */
+.hero { position: relative; padding: 6rem 0 4rem; }
 .particles { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
+.hero__grid { position: relative; z-index: 1; }
+.hero__role { margin-top: 0.85rem; font-family: "Space Grotesk", sans-serif; font-weight: 600;
+  font-size: clamp(1.05rem, 2.5vw, 1.4rem); color: var(--accent); letter-spacing: 0.3px; }
 .hero__copy { max-width: 38rem; }
 .badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.9rem; border-radius: 99px;
   border: 1px solid var(--border-strong); background: var(--surface-2); font-size: 0.85rem; color: var(--text-soft); }
@@ -240,7 +243,7 @@ html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
   font-size: clamp(2rem, 4vw, 2.75rem); }
 
 /* ---------- About ---------- */
-.about__grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start; }
+.about__grid { margin-top: 2.5rem; }
 .about__text p { font-size: 1.1rem; line-height: 1.85; color: var(--text-soft); margin: 0 0 1.1rem; }
 .about__text strong { color: var(--text); }
 .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -257,7 +260,7 @@ html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Skills ---------- */
-.skills__grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skills__grid { margin-top: 2.5rem; }
 .skill-group { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius); padding: 1.5rem; transition: transform 0.25s var(--ease), border-color 0.25s; }
 .skill-group:hover { transform: translateY(-4px); border-color: rgba(var(--accent-rgb), 0.5); }
 .skill-group__title { font-family: "Space Grotesk", sans-serif; font-size: 1.1rem; font-weight: 600; margin: 0 0 1rem; }
@@ -267,7 +270,7 @@ html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
 .chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
 /* ---------- Projects ---------- */
-.projects__grid { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.projects__grid { margin-top: 2.5rem; }
 .project-card { position: relative; display: flex; flex-direction: column; overflow: hidden;
   border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius); padding: 1.75rem;
   transition: border-color 0.25s, box-shadow 0.25s; transform-style: preserve-3d; }
@@ -300,7 +303,7 @@ html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
 /* ---------- Contact ---------- */
 .contact__lead { margin: 1rem auto 0; max-width: 34rem; font-size: 1.1rem; color: var(--text-soft); }
 .contact-form { margin-top: 2.5rem; text-align: left; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+/* .form-row grid handled by Tailwind (grid grid-cols-1 sm:grid-cols-2) */
 .field { margin-bottom: 1rem; }
 .field label { display: block; margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 500; color: var(--text-soft); }
 .field input, .field textarea { width: 100%; border-radius: 0.8rem; border: 1px solid var(--border-strong);
@@ -330,18 +333,20 @@ html[data-theme="light"] #theme-toggle .icon-moon { display: none; }
 [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 
-/* ---------- Responsive ---------- */
+/* ---------- Responsive ----------
+   Grid columns are handled by Tailwind responsive prefixes (sm:/md:/lg:) in the
+   markup; these rules cover nav, hero spacing and the avatar stacking only. */
 @media (max-width: 860px) {
   .nav-links { display: none; }
   .menu-btn { display: grid; }
   .accent-switch { display: none; }
   .hide-sm { display: none; }
-  .hero { min-height: auto; padding-top: 5rem; }
-  .hero__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .scroll-hint { display: none; }
+}
+@media (max-width: 767px) {
+  .hero { padding-top: 5rem; }
   .hero__avatar-wrap { order: -1; }
   .avatar { width: 13rem; height: 13rem; }
-  .about__grid, .skills__grid, .projects__grid, .form-row { grid-template-columns: 1fr; }
-  .scroll-hint { display: none; }
 }
 
 /* ---------- Reduced motion ---------- */
